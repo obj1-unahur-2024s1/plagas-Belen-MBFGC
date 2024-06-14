@@ -1,0 +1,37 @@
+import plagas.*
+
+describe "El perro con nivel de salud 30 es atacado por
+	las garrapatas que incrementan su poblacion de 10 a 12 disminuyendo 
+	el nivel de salud del perro a 10 y haciendo que no sea bueno"{
+	const perro = new Mascota(nivelDeSalud = 260)
+	const garrapatas= new Garrapatas(poblacion = 20)
+	test "el perro es bueno inicialmente"{assert.that(perro.esBueno())}
+	test "el nivel de daño de las garrapatas es "{
+		assert.equals(40, garrapatas.danioQueProvoca())	
+	}
+	test "las garrapatas atacan al perro "{
+	garrapatas.atacar(perro)
+	assert.equals(24, garrapatas.poblacion())
+	assert.equals(220, perro.nivelDeSalud())
+	assert.notThat(perro.esBueno())
+	}
+}
+
+describe " los 30 mosquitos atacan la casa que inicialmente 
+         tenia un nivel de mugre de 10"{
+         const casa = new Hogar(nivelDeMugre=5,  confort=10)
+         const mosquitos = new Mosquito(poblacion=30)
+         
+         test "la casa es buena"{
+         		assert.that(casa.esBueno())
+         }
+          test "los mosquitos atacan la casa "{
+          		mosquitos.atacar(casa)
+        	assert.equals(35,casa.nivelDeMugre())
+        	assert.notThat(casa.esBueno())
+        	assert.equals(33,mosquitos.poblacion())
+        	assert.that(mosquitos.transmiteEnfermedades())
+        	
+          		}
+         }
+
